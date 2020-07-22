@@ -1,9 +1,20 @@
 <h1><%= Time.current %></h1>
 
 <div class="my-4">
+  <div class="mb-2 text-sm text-muted">
+    <p>The button runs <code>click->ExampleReflex#update</code>, which morphs the fragment below.</p>
+    <p>You'll notice some elements that shouldn't change <em>do change</em>.</p>
+    <p>The timestamp is wrapped in `[data-permanent]`, yet gets updated.</p>
+    <p>The image tag is completely static, yet the image reloads on each morph. (You may need to disable your browser cache to reproduce this issue.)</p>
+    <p>
+      Additionally, there is a <code>click</code> handler attached to the root table element which logs to the console.
+      You'll notice this event handler no longer fires after the reflex runs (even though it should).
+    </p>
+  </div>
   <%= link_to 'Trigger reflex', '#', class: 'btn btn-primary btn-sm', data: { reflex: 'click->ExampleReflex#update' } %>
 </div>
 
+<h4>Fragment</h4>
 <%= render partial: 'hello' %>
 
 <script type="text/javascript">
@@ -11,3 +22,14 @@
     console.log('You clicked on the table.')
   })
 </script>
+
+<div class="my-4">
+  <div class="mb-2 text-sm text-muted">
+    <p>
+      One way to fix these issues is to replace the
+      <a href="https://github.com/hopsoft/cable_ready/blob/8fdcd1f0a78ed56aef25132111f371b71d98243e/javascript/cable_ready.js#L163-L166" target="_blank"><code>morphdom</code> call</a>
+      in <code>cable_ready.js</code>
+    </p>
+    <p><code>morphdom(element, <strong>template.content</strong></code> &rarr; <code>morphdom(element, <strong>template.innerHTML</strong></code></p>
+  </div>
+</div>
