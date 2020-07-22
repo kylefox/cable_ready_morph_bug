@@ -1,5 +1,13 @@
-<h1 data-controller="example">home#index: <%= Time.current %></h1>
+<h1><%= Time.current %></h1>
 
-<%= link_to 'Update', update_path, method: :post %>
+<div class="my-4">
+  <%= link_to 'Trigger reflex', '#', class: 'btn btn-primary btn-sm', data: { reflex: 'click->ExampleReflex#update' } %>
+</div>
 
 <%= render partial: 'hello' %>
+
+<script type="text/javascript">
+  document.getElementById('hello').addEventListener('click', function() {
+    console.log('You clicked on the table.')
+  })
+</script>

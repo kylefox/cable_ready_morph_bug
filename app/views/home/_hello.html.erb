@@ -1,5 +1,30 @@
-<div id="hello">
-  <h1>Hello!</h1>
-  <img src="/image">
-  <div data-permanent><%= Time.current %></div>
-</div>
+<table id="hello" class="table table-bordered">
+  <tr>
+    <th>
+      Static text
+      <div class="text-sm text-danger font-weight-normal">Should not change</div>
+    </th>
+    <td>Hello!</td>
+  </tr>
+  <tr>
+    <th>
+      Dynamic text
+      <div class="text-sm text-success font-weight-normal">Should change</div>
+    </th>
+    <td><div><%= Time.current %></div></td>
+  </tr>
+  <tr>
+    <th>
+      Element with <code>[data-permanent]</code>
+      <div class="text-sm text-danger font-weight-normal">Should not change</div>
+    </th>
+    <td><div data-permanent><%= Time.current %></div></td>
+  </tr>
+  <tr>
+    <th>
+      Slow loading image (static HTML)
+      <div class="text-sm text-danger font-weight-normal">Should not change</div>
+    </th>
+    <td><img src="/image" style="max-width: 400px;"></td>
+  </tr>
+</table>
